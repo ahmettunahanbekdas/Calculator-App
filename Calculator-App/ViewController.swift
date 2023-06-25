@@ -38,8 +38,40 @@ class ViewController: UIViewController {
      */
     @IBAction func equalsTap(_ sender: Any)
     {
-        let expression = NSExpression(format: workings)
-        let result = expression.expressionValue(with: nil, context: nil) as! Double
+        if (validInput())
+        {
+            let checkedWorkingsForPerecent = workings.replacingOccurrences(of: "%", with: "*.0.01")
+            let expression = NSExpression(format: checkedWorkingsForPerecent)
+            let result = expression.expressionValue(with: nil, context: nil) as! Double
+            let resultString = formatResult(result: result)
+            calculatorResults.text = resultString
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Invaled Input",
+            message: "Calculator unable to do math based on input",
+            preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default))
+            self.present(alert, animated: true, completion: nil )
+        }
+    }
+    
+    func validInput() -> Bool
+    {
+        
+        return true
+    }
+    
+    func formatResult(result: Double) -> String
+    {
+        if(result.truncatingRemainder(dividingBy: 1) == 0)
+        {
+            return String(format:"%.0f", result)
+        }
+        else
+        {
+            return String(format: "%.2f", result)
+        }
     }
     
     
@@ -49,7 +81,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func backTap(_ sender: Any) {
-        
+        if(!workings.isEmpty)
+        {
+            workings.removeLast()
+            calculatorWorkings.text = workings
+        }
     }
     
     /*
