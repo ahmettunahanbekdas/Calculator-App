@@ -4,4 +4,3 @@ https://github.com/ahmettunahanbekdas/CalculatorApp/assets/97003033/66c35428-024
 
 # AutoLayout
 
-![AutoLayout](https://github.com/ahmettunahanbekdas/CalculatorApp/assets/97003033/a59dad74-5dcd-4795-8d94-86f5f9d6132f)
