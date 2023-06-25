@@ -56,10 +56,61 @@ class ViewController: UIViewController {
         }
     }
     
-    func validInput() -> Bool
+    func validInput() ->Bool
+        {
+            var count = 0
+            var funcCharIndexes = [Int]()
+            
+            for char in workings
+            {
+                if(specialCharacter(char: char))
+                {
+                    funcCharIndexes.append(count)
+                }
+                count += 1
+            }
+            
+            var previous: Int = -1
+            
+            for index in funcCharIndexes
+            {
+                if(index == 0)
+                {
+                    return false
+                }
+                
+                if(index == workings.count - 1)
+                {
+                    return false
+                }
+                
+                if (previous != -1)
+                {
+                    if(index - previous == 1)
+                    {
+                        return false
+                    }
+                }
+                previous = index
+            }
+            
+            return true
+        }
+    func specialCharacter (char: Character) -> Bool
     {
-        
-        return true
+        if (char == "*")
+        {
+            return true
+        }
+        if (char == "/")
+        {
+            return true
+        }
+        if (char == "+")
+        {
+            return true
+        }
+        return false
     }
     
     func formatResult(result: Double) -> String
